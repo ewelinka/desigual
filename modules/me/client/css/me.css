@@ -1,0 +1,14 @@
+
+#me-chart rect {
+  fill: steelblue;
+}
+
+#me-chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.img-responsive {
+  display: inline-block;
+}

@@ -2,16 +2,16 @@
 //   'use strict';
 
 //   angular
-//     .module('chat')
+//     .module('d3')
 //     .run(menuConfig);
 
 //   menuConfig.$inject = ['menuService'];
 
 //   function menuConfig(menuService) {
-//     // Set top bar menu items
 //     menuService.addMenuItem('topbar', {
-//       title: 'Chat',
-//       state: 'chat'
+//       title: 'D3',
+//       state: 'd3',
+//       roles: ['*']
 //     });
 //   }
 // }());

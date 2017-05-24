@@ -1,0 +1,25 @@
+#viz div {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+}
+
+.img-saturate:hover {
+    /*-webkit-filter: saturate(150%) ;*/
+    -webkit-filter: hue-rotate(180deg) ;
+     /* grayscale(40%) ;
+     sepia(50%) hue-rotate(180deg) brightness(100%);*/
+    /*filter:  saturate(150%) ;*/
+    filter:  hue-rotate(180deg) ;
+    /*drop-shadow(10px 10px rgba(91,91,95,0.2)); */
+    transition: all .3s linear;
+}
+
+.img-saturate {
+    transition: all .3s linear;
+}
+
+.auto-margin{
+    margin: auto;
+}
