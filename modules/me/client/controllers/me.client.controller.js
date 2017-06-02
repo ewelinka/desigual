@@ -75,6 +75,7 @@
       orbitalCircles.transition()
         .delay(1500)
         .duration(1000)
+        .ease(d3.easeLinear)
         .attr("r", 80);
 
       orbitalCircles 

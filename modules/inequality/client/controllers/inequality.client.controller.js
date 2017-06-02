@@ -13,11 +13,18 @@
     test();
 
     function test() {
-      var w = 900;
-      var h = 600;
+      var w = 1200;
+      var h = 1000;
       var defaultFill = "#aaa";
+      var deptsJson = "modules/inequality/client/data/uy-all.json";
+      var deptsAdjust = {"scaleXY": 0.05, "shiftx": 300, "shifty":500, "flipx":1, "flipy": -1};
 
-      //var d3Geo = require("d3-geo");
+      var zoneJson = "modules/inequality/client/data/barrios.geojson";
+      // var zoneAdjust = {"scaleXY": 35, "shiftx": -1100, "shifty":-1100, "flipx":-1, "flipy": -1};
+      var zoneAdjust = {"scaleXY": 3270, "shiftx": 184500, "shifty":-113500, "flipx":1, "flipy": -1};
+
+      var nowJson = deptsJson;
+      var nowAdjusts = deptsAdjust;
 
       //Define map projection
       //var projection = d3.geoMercator()
@@ -25,18 +32,14 @@
                       // .scale(2500)
                       //.translate([2800 , -1300])
 
-      //admin_level_4.geojson
-      // .scale(2500)
-      // .translate([2800 , -1300])
-
       //Define path generator
       var path = d3.geoPath()
-                   .projection(scale(0.05,300,500));
+                   .projection(scale(nowAdjusts.scaleXY,nowAdjusts.shiftx,nowAdjusts.shifty,nowAdjusts.flipx,nowAdjusts.flipy));
 
-      function scale (scaleFactor,shiftX,shiftY) {
+      function scale (scaleFactor,shiftX,shiftY,flipx,flipy) {
             return d3.geoTransform({
                 point: function(x, y) {
-                    this.stream.point(x * scaleFactor+shiftX, -y  * scaleFactor+shiftY);
+                    this.stream.point(flipx * x * scaleFactor+shiftX, flipy * y  * scaleFactor+shiftY);
                 }
             });
         }
@@ -46,7 +49,7 @@
                   .attr("width", w)
                   .attr("height", h);
 
-      d3.json("modules/inequality/client/data/uy-all.json", function(error, uy) {
+      d3.json(nowJson, function(error, uy) {
         // if (error) return console.error(error);
         // console.log(uy.features);
 
@@ -65,6 +68,10 @@
       function mouseOver(d){
         d3.select(this)
           .attr("fill", "orange");
+
+        // d3.select(this).transition.attrTween("fill", function() {
+        //   return d3.interpolateRgb(this.getAttribute("fill"), "orange");
+        // });
 
         d3.select("#tooltip").transition().duration(200).style("opacity", .9);  
         
